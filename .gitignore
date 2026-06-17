@@ -1,0 +1,56 @@
+Binaries/
+.vs/
+DerivedDataCache/
+Intermediate/
+Saved/
+.idea/
+*/Saved/*
+*/Intermediate/*
+*/DerivedDataCache/*
+
+# 关卡烘焙数据（包含 Level_BuiltData）
+*/Content/*/*.umap_BuiltData.uasset
+*/Content/*/*.umap_BuiltData.uexp
+
+# 本地配置文件
+*.ini
+*.config
+*.manifest
+*.log
+*.sln
+
+# 编辑器临时文件
+*.sln.DotSettings.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 构建输出
+*/Binaries/*
+*/Build/*
+*/Plugins/*/Binaries/*
+*/Plugins/*/Intermediate/*
+
+# 第三方库和缓存
+*/Source/ThirdParty/*
+*/DerivedDataCache/*
+
+!/Config/**/*.ini
+**/[Dd]ebug/
+**/[Rr]elease/
+**/[Ll]ib/
+**/[Ll]ibs/
+**/build/
+**/x64/
+**/x86/
+**/bin/
+**/obj/
+**/ipch/
+**/ThirdParty/
+*.spec.cpp
+
+*.code-workspace
+!Content/Script/debug/
+Content/Script/x.code-workspace
+.vscode/
