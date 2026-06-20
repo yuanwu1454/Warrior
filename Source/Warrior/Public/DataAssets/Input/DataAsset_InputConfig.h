@@ -35,6 +35,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UInputMappingContext* DefaultMappingContext;
 
+
+	// TitleProperty 仅作用于 TArray <自定义 USTRUCT> 结构体数组，用来自定义编辑器细节面板中数组折叠条目右侧的标题文字。
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(TitleProperty="InputTag"))
 	TArray<FWarriorInputActionConfig> NativeInputConfig;
 
