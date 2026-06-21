@@ -10,6 +10,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "WarriorGameplayTags.h"
+#include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 
 
@@ -38,10 +39,23 @@ AWarriorHeroCharacter::AWarriorHeroCharacter()
 	
 }
 
+void AWarriorHeroCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (WarriorAbilitySystemComponent && WarriorAttributeSet)
+	{
+		const FString ASCText = FString::Printf(
+			TEXT("Owner Actor : %s, AvatarActor : %s"),
+			*WarriorAbilitySystemComponent->GetOwnerActor()->GetActorLabel(),
+			*WarriorAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
+		Debug::Print(TEXT("Ability system component valid: ") + ASCText, FColor::Green);
+	}
+}
+
 void AWarriorHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	Debug::Print(TEXT("Working"));
 }
 
 void AWarriorHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
