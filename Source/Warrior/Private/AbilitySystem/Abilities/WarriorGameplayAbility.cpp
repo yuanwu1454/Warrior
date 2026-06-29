@@ -3,10 +3,19 @@
 
 #include "AbilitySystem/Abilities/WarriorGameplayAbility.h"
 
+#include "AbilitySystemComponent.h"
+
 void UWarriorGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo,
-	const FGameplayAbilitySpec& Spec)
+                                            const FGameplayAbilitySpec& Spec)
 {
 	Super::OnGiveAbility(ActorInfo, Spec);
+	if(AbilityActivationPoilcy == EWarriorAbilityActivationPoilcy::OnGiven)
+	{
+		if (ActorInfo && !Spec.IsActive())
+		{
+			ActorInfo->AbilitySystemComponent->TryActivateAbility(Spec.Handle);
+		}
+	}
 }
 
 void UWarriorGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
@@ -14,4 +23,11 @@ void UWarriorGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle
 	bool bReplicateEndAbility, bool bWasCancelled)
 {
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+	if(AbilityActivationPoilcy == EWarriorAbilityActivationPoilcy::OnGiven)
+	{
+		if (ActorInfo)
+		{
+			ActorInfo->AbilitySystemComponent->ClearAbility(Handle);
+		}
+	}
 }
