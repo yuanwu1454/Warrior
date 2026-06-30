@@ -9,9 +9,8 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UDataAsset_InputConfig;
-
 struct FInputActionValue;
-
+class UHeroCombatComponent;
 /**
  * 
  */
@@ -41,6 +40,9 @@ private:
 // 蓝图编辑器可以正常读取、修改、调用 这个私有成员。
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Camera",meta=(AllowPrivateAccess="true"))
 	UCameraComponent* FollowCamera;
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Combat",meta=(AllowPrivateAccess="true"))
+	UHeroCombatComponent* HeroCombatComponent;
 #pragma endregion
 
 
@@ -51,4 +53,5 @@ private:
 	void Input_Look(const FInputActionValue& InputActionValue);	
 #pragma endregion 
 
+	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;}
 };
