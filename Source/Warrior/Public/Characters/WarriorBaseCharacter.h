@@ -8,6 +8,7 @@
 #include "WarriorBaseCharacter.generated.h"
 class UWarriorAbilitySystemComponent;
 class UWarriorAttributeSet;
+class UDataAsset_StartupDataBase;
 UCLASS()
 class WARRIOR_API AWarriorBaseCharacter : public ACharacter, public IAbilitySystemInterface
 {
@@ -29,6 +30,8 @@ protected:
 	UWarriorAbilitySystemComponent* WarriorAbilitySystemComponent;
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="AbilitySystem")
 	UWarriorAttributeSet* WarriorAttributeSet;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="CharacterData")
+	TSoftObjectPtr<UDataAsset_StartupDataBase> CharacterStartUpData;
 public:
 	FORCEINLINE UWarriorAbilitySystemComponent* GetWarriorAbilitySystemComponent() const {return WarriorAbilitySystemComponent;}
 	FORCEINLINE UWarriorAttributeSet* GetWarriorAttributeSet() const {return WarriorAttributeSet;}

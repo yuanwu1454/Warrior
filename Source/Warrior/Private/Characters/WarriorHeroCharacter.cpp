@@ -12,7 +12,7 @@
 #include "WarriorGameplayTags.h"
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "DataAssets/Input/DataAsset_InputConfig.h"
-
+#include "DataAssets/StartUpData/DataAsset_StartupDataBase.h"
 
 
 AWarriorHeroCharacter::AWarriorHeroCharacter()
@@ -43,13 +43,15 @@ void AWarriorHeroCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	if (WarriorAbilitySystemComponent && WarriorAttributeSet)
+	// !IsNull() ≠ IsValid()，二者完全不是一回事，绝对不能互相替换。
+	// IsValid 主要看是否已经加载
+	// IsNull 只看软引用有没有填写资源路径
+	if (!CharacterStartUpData.IsNull())
 	{
-		const FString ASCText = FString::Printf(
-			TEXT("Owner Actor : %s, AvatarActor : %s"),
-			*WarriorAbilitySystemComponent->GetOwnerActor()->GetActorLabel(),
-			*WarriorAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
-		Debug::Print(TEXT("Ability system component valid: ") + ASCText, FColor::Green);
+		if(UDataAsset_StartupDataBase* LoadedData = CharacterStartUpData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
+		}
 	}
 }
 
