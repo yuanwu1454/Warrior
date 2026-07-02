@@ -14,6 +14,7 @@ enum class EWarriorAbilityActivationPoilcy :uint8
 };
 
 class UPawnCombatComponent;
+class UWarriorAbilitySystemComponent;
 /**
  * 
  */
@@ -33,4 +34,8 @@ protected:
 
 	UFUNCTION(BlueprintPure,Category="Warrior|Ability")
 	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
+
+	UFUNCTION(BlueprintPure,Category="Warrior|Ability")
+	UWarriorAbilitySystemComponent* GetWarriorAbilitySystemComponentFromActorInfo() const;
+	
 };

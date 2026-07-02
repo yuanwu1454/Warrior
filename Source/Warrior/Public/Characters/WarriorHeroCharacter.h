@@ -53,5 +53,6 @@ private:
 	void Input_Look(const FInputActionValue& InputActionValue);	
 #pragma endregion 
 
+public:
 	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;}
 };
