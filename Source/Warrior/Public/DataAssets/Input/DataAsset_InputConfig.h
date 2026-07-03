@@ -21,7 +21,16 @@ public:
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	UInputAction* InputAction;
-	
+
+
+	bool IsValid() const
+	{
+		if (InputTag.IsValid() && InputAction)
+		{
+			return true;
+		}
+		return false;
+	}
 };
 
 /**
@@ -40,5 +49,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(TitleProperty="InputTag"))
 	TArray<FWarriorInputActionConfig> NativeInputConfig;
 
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(TitleProperty="InputTag"))
+	TArray<FWarriorInputActionConfig> AbilityInputConfig;
+	
 	UInputAction* FindNativeInputActionByTag(const FGameplayTag& InInputTag) const;
+
 };
