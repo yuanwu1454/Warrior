@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Characters/WarriorBaseCharacter.h"
 #include "WarriorHeroCharacter.generated.h"
 
@@ -50,8 +51,10 @@ private:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="CharacterData",meta=(AllowPrivateAccess="true"))
 	UDataAsset_InputConfig* InputConfigDataAsset;
 	void Input_Move(const FInputActionValue& InputActionValue);	
-	void Input_Look(const FInputActionValue& InputActionValue);	
-#pragma endregion 
+	void Input_Look(const FInputActionValue& InputActionValue);
+	void Input_AbilityInputPressed(FGameplayTag InInputTag);
+	void Input_AbilityInputReleased(FGameplayTag InInputTag);
+	#pragma endregion 
 
 public:
 	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const {return HeroCombatComponent;}

@@ -74,6 +74,8 @@ void AWarriorHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	UWarriorInputComponent* WarriorInputComponent =  CastChecked<UWarriorInputComponent>(PlayerInputComponent);
 	WarriorInputComponent->BindNativeInputAction(InputConfigDataAsset, WarriorGameplayTags::InputTag_Move, ETriggerEvent::Triggered, this, &ThisClass::Input_Move);
 	WarriorInputComponent->BindNativeInputAction(InputConfigDataAsset, WarriorGameplayTags::InputTag_Look, ETriggerEvent::Triggered, this, &ThisClass::Input_Look);
+	
+	WarriorInputComponent->BindAbilityInputAction(InputConfigDataAsset, this,  &ThisClass::Input_AbilityInputPressed, &ThisClass::Input_AbilityInputReleased);
 }
 
 void AWarriorHeroCharacter::Input_Move(const FInputActionValue& InputActionValue)
@@ -126,4 +128,14 @@ void AWarriorHeroCharacter::Input_Look(const FInputActionValue& InputActionValue
 		// 给控制器叠加俯仰旋转输入，正数抬头、负数低头
 		AddControllerPitchInput(LookAxisVector.Y);	
 	}
+}
+
+void AWarriorHeroCharacter::Input_AbilityInputPressed(FGameplayTag InInputTag)
+{
+	WarriorAbilitySystemComponent->OnAbilityInputPressed(InInputTag);
+}
+
+void AWarriorHeroCharacter::Input_AbilityInputReleased(FGameplayTag InInputTag)
+{
+	WarriorAbilitySystemComponent->OnAbilityInputReleased(InInputTag);
 }
