@@ -22,7 +22,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Warrior|Combat")
 	AWarriorWeaponBase* GetCharacterCarriedWeaponByTag(FGameplayTag InWeaponTagToGet) const;
 
-	UPROPERTY(BlueprintReadWrite,Category="Warrior|Combat")
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite,Category="Warrior|Combat")
 	FGameplayTag CurrentEquippedWeaponTag;
 
 	UFUNCTION(BlueprintCallable, Category="Warrior|Combat")
