@@ -27,5 +27,5 @@ public:
 
 private:
 	TWeakObjectPtr<AWarriorHeroCharacter> CachedWarriorHeroCharacter;
-	TWeakObjectPtr<AWarriorHeroController> CachedWarriorHeroControllerr;
+	TWeakObjectPtr<AWarriorHeroController> CachedWarriorHeroController;
 };
