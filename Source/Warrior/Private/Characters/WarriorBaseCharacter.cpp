@@ -29,6 +29,11 @@ void AWarriorBaseCharacter::PossessedBy(AController* NewController)
 	}
 }
 
+UPawnCombatComponent* AWarriorBaseCharacter::GetPawnCombatComponent()
+{
+	return nullptr;
+}
+
 UAbilitySystemComponent* AWarriorBaseCharacter::GetAbilitySystemComponent() const
 {
 	return GetWarriorAbilitySystemComponent();

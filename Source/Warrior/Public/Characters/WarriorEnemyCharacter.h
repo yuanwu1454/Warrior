@@ -23,6 +23,11 @@ protected:
 	virtual void PossessedBy(AController* NewController) override;
 	//~ End	APawn Interface
 
+	//~ Begin IPawnCombatInterface Interface
+	virtual UPawnCombatComponent*  GetPawnCombatComponent() override;
+	//~ End	IPawnCombatInterface Interface
+
+
 	void InitEnemyStartUpData();
 public:
 	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const {return EnemyCombatComponent;}

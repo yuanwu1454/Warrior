@@ -27,6 +27,11 @@ protected:
 	virtual void PossessedBy(AController* NewController) override;
 	//~ End	APawn Interface
 
+	//~ Begin IPawnCombatInterface Interface
+    virtual UPawnCombatComponent*  GetPawnCombatComponent() override;
+    //~ End	IPawnCombatInterface Interface
+
+	
 	
 	virtual void BeginPlay() override;
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
