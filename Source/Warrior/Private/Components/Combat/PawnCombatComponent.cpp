@@ -17,8 +17,9 @@ void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTagToRegis
 		CurrentEquippedWeaponTag = InWeaponTagToRegister;
 	}
 
-	const FString WeaponString = FString::Printf(TEXT("A weapon named: %s has been registered using the tag %s "),*InWeaponToRegister->GetName(), *InWeaponTagToRegister.ToString());
-	Debug::Print(WeaponString);
+	InWeaponToRegister->OnWeaponHitTarget.BindUObject(this, &ThisClass::OnWeaponHitTarget);
+	InWeaponToRegister->OnWeaponPulledFromTarget.BindUObject(this, &ThisClass::OnWeaponPulledFromTarget);
+	
 }
 
 AWarriorWeaponBase* UPawnCombatComponent::GetCharacterCarriedWeaponByTag(FGameplayTag InWeaponTagToGet) const
@@ -70,4 +71,12 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
 	}
 
 	
+}
+
+void UPawnCombatComponent::OnWeaponHitTarget(AActor* HitActor)
+{
+}
+
+void UPawnCombatComponent::OnWeaponPulledFromTarget(AActor* InteractedActor)
+{
 }
