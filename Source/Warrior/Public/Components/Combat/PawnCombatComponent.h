@@ -44,7 +44,8 @@ public:
 
 	UFUNCTION()
 	virtual void OnWeaponPulledFromTarget(AActor* InteractedActor);
-	
+protected:
+	TArray<AActor*> OverlappedActors;
 private:
 	TMap<FGameplayTag, AWarriorWeaponBase*> CharacterCarriedWeaponMap;
 };
