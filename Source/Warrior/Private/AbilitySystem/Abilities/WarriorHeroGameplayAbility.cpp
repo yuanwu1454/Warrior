@@ -38,7 +38,7 @@ UHeroCombatComponent* UWarriorHeroGameplayAbility::GetHeroCombatComponentFromAct
 
 FGameplayEffectSpecHandle UWarriorHeroGameplayAbility::MakeHeroDamageEffectSpecHandle(
 	TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackGameplayTag,
-	int32 InCurrentComboCount)
+	int32 InUsedComboCount)
 {
 	check(EffectClass);
 	FGameplayEffectContextHandle ContextHandle = GetWarriorAbilitySystemComponentFromActorInfo()->MakeEffectContext();
@@ -53,6 +53,6 @@ FGameplayEffectSpecHandle UWarriorHeroGameplayAbility::MakeHeroDamageEffectSpecH
 
 	SpecHandle.Data->SetSetByCallerMagnitude(WarriorGameplayTags::Shared_SetByCaller_BaseDamage, InWeaponBaseDamage);
 	if (InCurrentAttackGameplayTag.IsValid())
-		SpecHandle.Data->SetSetByCallerMagnitude(InCurrentAttackGameplayTag, InCurrentComboCount);
+		SpecHandle.Data->SetSetByCallerMagnitude(InCurrentAttackGameplayTag, InUsedComboCount);
 	return SpecHandle;
 }

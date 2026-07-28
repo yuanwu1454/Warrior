@@ -13,6 +13,22 @@ AWarriorHeroWeapon* UHeroCombatComponent::GetHeroCarriedWeaponByTag(FGameplayTag
 	return Cast<AWarriorHeroWeapon>(GetCharacterCarriedWeaponByTag(InWeaponTagToGet));
 }
 
+AWarriorHeroWeapon* UHeroCombatComponent::GetHeroCurrentEquippedWeapon() const
+{
+	return Cast<AWarriorHeroWeapon>(GetCharacterCurrentEquippedWeapon());
+}
+
+float UHeroCombatComponent::GetHeroCurrentEquippedWeaponDamageAtLevel(float InLevel) const
+{
+	AWarriorHeroWeapon* WarriorHeroWeapon = GetHeroCurrentEquippedWeapon();
+	if (WarriorHeroWeapon)
+	{
+		return WarriorHeroWeapon->HeroWeaponData.WeaponBaseDamage.GetValueAtLevel(InLevel);
+	}
+	return 0.f;
+}
+
+
 void UHeroCombatComponent::OnWeaponHitTarget(AActor* HitActor)
 {
 	//Debug::Print(GetOwningPawn()->GetActorNameOrLabel() + TEXT(" hit ") + HitActor->GetActorNameOrLabel(), FColor::Green);
