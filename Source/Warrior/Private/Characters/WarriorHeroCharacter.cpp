@@ -71,6 +71,11 @@ UPawnUIComponent* AWarriorHeroCharacter::GetPawnUIComponent() const
 	return HeroUIComponent;
 }
 
+UHeroUIComponent* AWarriorHeroCharacter::GetHeroUIComponent() const
+{
+	return HeroUIComponent;
+}
+
 void AWarriorHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
