@@ -12,6 +12,8 @@ enum class EWarriorAbilityActivationPoilcy :uint8
 	OnTriggered,
 	OnGiven
 };
+
+class UPawnCombatComponent;
 /**
  * 
  */
@@ -20,7 +22,7 @@ class WARRIOR_API UWarriorGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
 protected:
-	UPROPERTY(EditDefaultsOnly, Category="WarriorAbility")
+	UPROPERTY(EditDefaultsOnly, Category="Warrior|Ability")
 	EWarriorAbilityActivationPoilcy AbilityActivationPoilcy = EWarriorAbilityActivationPoilcy::OnTriggered;
 
 	
@@ -28,5 +30,7 @@ protected:
 	virtual void OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
 	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 	//~ End	UGameplayAbility Interface
-	
+
+	UFUNCTION(BlueprintPure,Category="Warrior|Ability")
+	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
 };
